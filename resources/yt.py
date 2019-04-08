@@ -18,7 +18,7 @@ class YTSearch(Resource):
         except ValueError:
             return 'Please check youtube url'
 
-        return str(video)
+        return jsonify(video.get_details())
 
 
 class Best(Resource):
