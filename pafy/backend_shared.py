@@ -146,7 +146,21 @@ class BasePafy(object):
             nfo = "Pafy object: %s [%s]" % (self.videoid,
                                             self.title[:45] + "..")
 
-        return str(info)
+        return nfo.encode("utf8", "replace") if pyver == 2 else nfo
+
+    def get_details(self):
+        """ Get video data after retrieving from given link """
+        if self._have_basic:
+            info = {"Title": self.title,
+                    "Author": self.author,
+                    "ID": self.videoid,
+                    "Duration": self.duration,
+                    "Rating": self.rating,
+                    "Views": self.viewcount,
+                    "Thumbnail": self.thumb
+                    }
+
+        return info
 
     @property
     def streams(self):
