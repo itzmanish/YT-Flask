@@ -151,8 +151,14 @@ class BasePafy(object):
     def get_details(self):
         """ Get video data after retrieving from given link """
         streams = self.streams
-        urls = [(s.resolution, s.extension, s.get_filesize(), s.url)
-                for s in streams]
+        urls = []
+        for s in streams:
+            urls.append({
+                'resolution': s.resolution,
+                'extension': s.extension,
+                'size': s.get_filesize(),
+                'url': s.url
+            })
 
         if self._have_basic:
             info = {"Title": self.title,

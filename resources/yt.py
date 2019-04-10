@@ -9,8 +9,9 @@ class YTSearch(Resource):
     parser.add_argument('link', type=str, help='Provide youtube link')
 
     @classmethod
-    def get(cls):
+    def post(cls):
         args = cls.parser.parse_args()
+        print(args)
 
         try:
             video = new(args['link'])
